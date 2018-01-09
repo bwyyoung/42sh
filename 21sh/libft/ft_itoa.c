@@ -12,12 +12,12 @@
 
 #include "../includes/libft.h"
 
-char		*ft_itoa(int n)
+char *ft_itoa(int n)
 {
-	char	*str;
-	int		save;
-	int		neg;
-	int		i;
+	char *str;
+	int save;
+	int neg;
+	int i;
 
 	save = n;
 	neg = (n < 0 ? -1 : 1);

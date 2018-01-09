@@ -4,42 +4,42 @@
 ** allocates a new environment variables list element
 */
 
-t_cmds      *ft_new_cmd(char *command)
+t_cmds *ft_new_cmd(char *command)
 {
-    t_cmds *new;
+	t_cmds *new;
 
-    if (!(new = (t_cmds *)malloc(sizeof(t_cmds))))
-        fatal("Error: could not allocate env var list elem in ft_new_env");
-    new->next = NULL;
-    new->prev = NULL;
-    new->args = NULL;
-    new->args = ft_strsplit(command, ' ');
-    return (new);
+	if (!(new = (t_cmds *) malloc(sizeof(t_cmds))))
+		fatal("Error: could not allocate env var list elem in ft_new_env");
+	new->next = NULL;
+	new->prev = NULL;
+	new->args = NULL;
+	new->args = ft_strsplit(command, ' ');
+	return (new);
 }
 
-/* 
+/*
 ** iterates to the end of the cmd list
 ** and then adds the value to it
 */
 
-void		ft_add_cmd(t_cmds **begin_list, char *command)
+void ft_add_cmd(t_cmds **begin_list, char *command)
 {
-    t_cmds *tmp;
+	t_cmds *tmp;
 
-    tmp = NULL;
+	tmp = NULL;
 	if (!*begin_list)
 	{
 		*begin_list = ft_new_cmd(command);
-		return ;
+		return;
 	}
-    else
-    {
-        tmp = *begin_list;
-        while (tmp->next)
-            tmp = tmp->next;
-        tmp->next = ft_new_cmd(command);
-        tmp->next->prev = tmp;
-    }
+	else
+	{
+		tmp = *begin_list;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = ft_new_cmd(command);
+		tmp->next->prev = tmp;
+	}
 }
 
 /*
@@ -50,28 +50,28 @@ void		ft_add_cmd(t_cmds **begin_list, char *command)
 ** initial one
 */
 
-t_cmds      *store_commands(char *commands)
+t_cmds *store_commands(char *commands)
 {
-    char    **cmds_arr; // an array to temporarily store the commands inside
-    t_cmds  *ret;
-    int     i;
+	char **cmds_arr; // an array to temporarily store the commands inside
+	t_cmds *ret;
+	int i;
 
-    cmds_arr = NULL;
-    ret = NULL;
-    i = 0;
-    if (!commands)
-        return (NULL);
-    cmds_arr = ft_strsplit(commands, ';');
-    if (!cmds_arr)
-    {
-        ft_add_cmd(&ret, commands);
-        return (ret);
-    }
-    while (cmds_arr[i]) // while there are potential commands
-    {
-        ft_add_cmd(&ret, cmds_arr[i]);
-        i++;
-    }
-    free_twod_arr(cmds_arr);
-    return (ret);
+	cmds_arr = NULL;
+	ret = NULL;
+	i = 0;
+	if (!commands)
+		return (NULL);
+	cmds_arr = ft_strsplit(commands, ';');
+	if (!cmds_arr)
+	{
+		ft_add_cmd(&ret, commands);
+		return (ret);
+	}
+	while (cmds_arr[i]) // while there are potential commands
+	{
+		ft_add_cmd(&ret, cmds_arr[i]);
+		i++;
+	}
+	free_twod_arr(cmds_arr);
+	return (ret);
 }

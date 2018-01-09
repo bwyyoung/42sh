@@ -12,15 +12,15 @@
 
 #include "../includes/libft.h"
 
-static void		my_bzero(void *s, size_t n)
+static void my_bzero(void *s, size_t n)
 {
-	unsigned int	i;
-	unsigned char	*str;
+	unsigned int i;
+	unsigned char *str;
 
 	i = 0;
 	str = s;
 	if (n < 1)
-		return ;
+		return;
 	while (i < n)
 	{
 		str[i] = '\0';
@@ -28,7 +28,7 @@ static void		my_bzero(void *s, size_t n)
 	}
 }
 
-void			*ft_memalloc(size_t size)
+void *ft_memalloc(size_t size)
 {
 	void *memoire;
 

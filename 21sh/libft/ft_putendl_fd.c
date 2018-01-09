@@ -12,12 +12,12 @@
 
 #include "../includes/libft.h"
 
-static void		my_putchar_fd(char c, int fd)
+static void my_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }
 
-void			ft_putendl_fd(char const *str, int fd)
+void ft_putendl_fd(char const *str, int fd)
 {
 	int i;
 

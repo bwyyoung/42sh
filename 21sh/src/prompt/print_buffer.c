@@ -7,17 +7,17 @@
 ** the cursor
 */
 
-void        print_buffer(t_line *line)
+void print_buffer(t_line *line)
 {
-    t_buf   *tmp;
+	t_buf *tmp;
 
-    tmp = NULL;
-    prompt_cursor(line);
-    tmp = line->buffer;
-    while (tmp)
-    {
-        ft_putstr(tmp->key);
-        tmp = tmp->next;
-    }
-    set_cursor(line);
+	tmp = NULL;
+	prompt_cursor(line);
+	tmp = line->buffer;
+	while (tmp)
+	{
+		ft_putstr(tmp->key);
+		tmp = tmp->next;
+	}
+	set_cursor(line);
 }

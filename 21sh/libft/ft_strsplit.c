@@ -12,10 +12,10 @@
 
 #include "../includes/libft.h"
 
-static int		ft_count_words(char const *s, char c)
+static int ft_count_words(char const *s, char c)
 {
-	int		i;
-	int		amt;
+	int i;
+	int amt;
 
 
 	if (!s || !c)
@@ -32,12 +32,12 @@ static int		ft_count_words(char const *s, char c)
 	return (amt);
 }
 
-static char		**ft_line_creator(const char *s, char **arr, char c, int amts)
+static char **ft_line_creator(const char *s, char **arr, char c, int amts)
 {
-	int		i;
-	int		k;
-	size_t	debut;
-	size_t	longeur;
+	int i;
+	int k;
+	size_t debut;
+	size_t longeur;
 
 	i = 0;
 	k = 0;
@@ -62,10 +62,10 @@ static char		**ft_line_creator(const char *s, char **arr, char c, int amts)
 	return (arr);
 }
 
-char			**ft_strsplit(const char *s, char c)
+char **ft_strsplit(const char *s, char c)
 {
-	int		amt;
-	char	**arr;
+	int amt;
+	char **arr;
 
 	amt = 0;
 	arr = NULL;
@@ -74,7 +74,7 @@ char			**ft_strsplit(const char *s, char c)
 	amt = ft_count_words(s, c);
 	if (amt <= 0)
 		return (NULL);
-	if (!(arr = (char **)malloc(sizeof(char *) * (amt + 1))))
+	if (!(arr = (char **) malloc(sizeof(char *) * (amt + 1))))
 		return (NULL);
 	arr = ft_line_creator(s, arr, c, amt);
 	arr[amt] = NULL;

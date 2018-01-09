@@ -12,21 +12,21 @@
 
 #include "../includes/libft.h"
 
-static unsigned	char	changer(int n)
+static unsigned char changer(int n)
 {
-	unsigned	char c;
+	unsigned char c;
 
 	c = n;
 	return (c);
 }
 
-void					*ft_memset(void *s, int c, size_t n)
+void *ft_memset(void *s, int c, size_t n)
 {
-	char		chr;
-	char		*fuckall;
-	size_t		i;
+	char chr;
+	char *fuckall;
+	size_t i;
 
-	fuckall = (char *)s;
+	fuckall = (char *) s;
 	chr = changer(c);
 	i = 0;
 	while (i != n)

@@ -12,9 +12,9 @@
 
 #include "../includes/libft.h"
 
-static int	my_strlen(const char *str)
+static int my_strlen(const char *str)
 {
-	int		i;
+	int i;
 
 	i = 0;
 	while (*str != '\0')
@@ -25,16 +25,16 @@ static int	my_strlen(const char *str)
 	return (i);
 }
 
-char		*ft_strjoin(char const *s1, char const *s2)
+char *ft_strjoin(char const *s1, char const *s2)
 {
-	char	*tmp;
-	char	*conc;
-	int		mem;
+	char *tmp;
+	char *conc;
+	int mem;
 
 	if (!s1 || !s2)
 		return (NULL);
 	mem = my_strlen(s1) + my_strlen(s2);
-	if (!(conc = (char *)malloc(sizeof(char) * mem + 1)))
+	if (!(conc = (char *) malloc(sizeof(char) * mem + 1)))
 		return (NULL);
 	tmp = conc;
 	while (*s1 != '\0')

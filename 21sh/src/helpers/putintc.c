@@ -5,8 +5,8 @@
 ** the stdin
 */
 
-int             putintc(int c)
+int putintc(int c)
 {
-    write(STDIN_FILENO, &c, 1);
-    return (0);
+	write(STDIN_FILENO, &c, 1);
+	return (0);
 }

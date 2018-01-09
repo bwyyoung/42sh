@@ -18,10 +18,10 @@
 ** to make a path to be executed by execve
 */
 
-char			*make_bin_cmd(t_shell *shell)
+char *make_bin_cmd(t_shell *shell)
 {
-	char		*command;
-	int			len_cmd;
+	char *command;
+	int len_cmd;
 
 	command = NULL;
 	len_cmd = 0;
@@ -42,7 +42,7 @@ char			*make_bin_cmd(t_shell *shell)
 ** been found
 */
 
-void			cmd_not_found(t_shell *shell)
+void cmd_not_found(t_shell *shell)
 {
 	char *command;
 
@@ -53,9 +53,9 @@ void			cmd_not_found(t_shell *shell)
 	ft_putendl(shell->cmds->args[0]);
 	free_twod_arr(shell->cmds->args);
 
-	free_shell(shell);  // in the case of two commands, and one not being found, 
+	free_shell(shell);  // in the case of two commands, and one not being found,
 	// there is a pointer which is being freed which shouldn't
-	
+
 	exit(-1);
 }
 
@@ -64,12 +64,12 @@ void			cmd_not_found(t_shell *shell)
 ** the child process
 */
 
-int				sh_launch(char **envv, t_shell *shell)
+int sh_launch(char **envv, t_shell *shell)
 {
-	pid_t		pid;
-	pid_t		wpid;
-	int			status;
-	char		*command;
+	pid_t pid;
+	pid_t wpid;
+	int status;
+	char *command;
 
 	command = NULL;
 	pid = fork();

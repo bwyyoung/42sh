@@ -12,7 +12,7 @@
 
 #include "../includes/ft_sh.h"
 
-size_t	check4_newline(char buff[])
+size_t check4_newline(char buff[])
 {
 	size_t i;
 
@@ -22,11 +22,11 @@ size_t	check4_newline(char buff[])
 	return (i);
 }
 
-char	*fill_stockage(char *tmp, char *buff, size_t length)
+char *fill_stockage(char *tmp, char *buff, size_t length)
 {
-	size_t		i;
-	size_t		j;
-	char		*rslt;
+	size_t i;
+	size_t j;
+	char *rslt;
 
 	i = 0;
 	j = 0;
@@ -46,13 +46,13 @@ char	*fill_stockage(char *tmp, char *buff, size_t length)
 	return (rslt);
 }
 
-void	shift_buffer(char buff[], size_t length, char **line)
+void shift_buffer(char buff[], size_t length, char **line)
 {
 	int i;
 
 	i = 0;
 	if (buff[0] == '\0' && *line != '\0')
-		return ;
+		return;
 	else
 	{
 		while (buff[i + length + 1] != '\0')
@@ -65,15 +65,15 @@ void	shift_buffer(char buff[], size_t length, char **line)
 			buff[i] = '\0';
 			i++;
 		}
-		return ;
+		return;
 	}
 }
 
-int		get_next_line(int const fd, char **line)
+int get_next_line(int const fd, char **line)
 {
-	static char		buff[BUFF_SIZE + 1] = {'\0'};
-	int				red;
-	size_t			length;
+	static char buff[BUFF_SIZE + 1] = {'\0'};
+	int red;
+	size_t length;
 
 	if (line == NULL)
 		return (-1);

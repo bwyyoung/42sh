@@ -5,12 +5,12 @@
 ** in case the function fails it safely exits the programs
 */
 
-DIR   *safe_opendir(char *dir_path)
+DIR *safe_opendir(char *dir_path)
 {
-    DIR *dir;
+	DIR *dir;
 
-    dir = NULL;
-    if (!(dir = opendir(dir_path)))
-        fatal("Could not open directory in (check_dir_paths)");
-    return (dir);
+	dir = NULL;
+	if (!(dir = opendir(dir_path)))
+		fatal("Could not open directory in (check_dir_paths)");
+	return (dir);
 }

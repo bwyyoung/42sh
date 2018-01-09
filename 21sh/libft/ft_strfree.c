@@ -6,10 +6,10 @@
 ** if the string is NULL it does nothing
 */
 
-void        ft_strfree(char *string)
+void ft_strfree(char *string)
 {
-    if (!string)
-        return ;
-    free(string);
-    string = NULL;
+	if (!string)
+		return;
+	free(string);
+	string = NULL;
 }

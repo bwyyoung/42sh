@@ -12,7 +12,7 @@
 
 #include "../includes/libft.h"
 
-int		ft_toupper(int c)
+int ft_toupper(int c)
 {
 	int upper;
 

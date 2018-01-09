@@ -6,15 +6,15 @@
 
 int sh_echo(char **args)
 {
-    int i;
+	int i;
 
-    i = 1;
-    while (args[i])
-    {
-        ft_putstr(args[i]);
-        ft_putchar(' ');
-        i++;
-    }
-    ft_putendl("");
-    return (1);
+	i = 1;
+	while (args[i])
+	{
+		ft_putstr(args[i]);
+		ft_putchar(' ');
+		i++;
+	}
+	ft_putendl("");
+	return (1);
 }

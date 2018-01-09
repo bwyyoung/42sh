@@ -5,37 +5,38 @@
 ** onto the terminal
 */
 
-void            apply_mode(t_shell *shell)
+void apply_mode(t_shell *shell)
 {
-    if (tcsetattr(0, TCSAFLUSH, shell->term) == -1)
-        fatal("Error in (apply_mode)");
+	if (tcsetattr(0, TCSAFLUSH, shell->term) == -1)
+		fatal("Error in (apply_mode)");
 
 }
 
 /*
 ** makes a new shell which should
-** be set into raw mode 
+** be set into raw mode
 */
 
-t_shell         *make_shell(t_shell *shell)
+t_shell *make_shell(t_shell *shell)
 {
 
-    if (!(shell->sz = (struct winsize *)malloc(sizeof(struct winsize) * 1)))
-        fatal("Can't allocate size struct (make_shell)");
-    if (!(shell->term = (struct termios *)malloc(sizeof(struct termios) * 1)))
-        fatal("Could not alloc (make_shell)");
-    if (!(shell->termold = (struct termios *)malloc(sizeof(struct termios) * 1)))
-        fatal("Could not alloc termold (make_shell)");
-    if (tcgetattr(0, shell->termold) == -1)
-        fatal("Could not get attributes for terminal (make_shell)");
-    if (tcgetattr(0, shell->term) == -1)
-        fatal("Could not get attributes for terminal (make_shell)");
-    ioctl(0, TIOCGWINSZ, shell->sz);
+	if (!(shell->sz = (struct winsize *) malloc(sizeof(struct winsize) * 1)))
+		fatal("Can't allocate size struct (make_shell)");
+	if (!(shell->term = (struct termios *) malloc(sizeof(struct termios) * 1)))
+		fatal("Could not alloc (make_shell)");
+	if (!(shell->termold = (struct termios *) malloc(
+		sizeof(struct termios) * 1)))
+		fatal("Could not alloc termold (make_shell)");
+	if (tcgetattr(0, shell->termold) == -1)
+		fatal("Could not get attributes for terminal (make_shell)");
+	if (tcgetattr(0, shell->term) == -1)
+		fatal("Could not get attributes for terminal (make_shell)");
+	ioctl(0, TIOCGWINSZ, shell->sz);
 	tputs(tgetstr("vi", NULL), 1, putintc);
-    shell->term->c_lflag &= ~(ECHO);
-    shell->term->c_lflag &= ~(ICANON);
-    apply_mode(shell);
-    return (shell);
+	shell->term->c_lflag &= ~(ECHO);
+	shell->term->c_lflag &= ~(ICANON);
+	apply_mode(shell);
+	return (shell);
 }
 
 /*
@@ -44,23 +45,23 @@ t_shell         *make_shell(t_shell *shell)
 ** mode
 */
 
-t_shell     *init_shell(int ac, char **av, char **envv)
+t_shell *init_shell(int ac, char **av, char **envv)
 {
-    t_shell *shell;
+	t_shell *shell;
 
-    shell = NULL;
-    av = NULL;
-    ac = 0;
-    if (!(shell = (t_shell *)malloc(sizeof(t_shell) * 1)))
-        fatal("Couldn't allocate shell in (init_shell)");
-    shell->history = NULL;
-    shell->env = init_env(envv);
-    shell->argc = 0;
-    shell->cmds = NULL;
-    shell->path_var = NULL;
-    shell->bin_dir = NULL;
-    shell = make_shell(shell);
-    return (shell);
+	shell = NULL;
+	av = NULL;
+	ac = 0;
+	if (!(shell = (t_shell *) malloc(sizeof(t_shell) * 1)))
+		fatal("Couldn't allocate shell in (init_shell)");
+	shell->history = NULL;
+	shell->env = init_env(envv);
+	shell->argc = 0;
+	shell->cmds = NULL;
+	shell->path_var = NULL;
+	shell->bin_dir = NULL;
+	shell = make_shell(shell);
+	return (shell);
 }
 
 /*

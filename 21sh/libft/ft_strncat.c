@@ -12,10 +12,10 @@
 
 #include "../includes/libft.h"
 
-char	*ft_strncat(char *dest, const char *src, size_t n)
+char *ft_strncat(char *dest, const char *src, size_t n)
 {
-	char	*ret;
-	size_t	i;
+	char *ret;
+	size_t i;
 
 	i = 0;
 	ret = dest;

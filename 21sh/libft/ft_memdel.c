@@ -12,8 +12,8 @@
 
 #include "../includes/libft.h"
 
-void	ft_memdel(void **ap)
+void ft_memdel(void **ap)
 {
-	free((void *)*ap);
+	free((void *) *ap);
 	*ap = NULL;
 }

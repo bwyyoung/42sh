@@ -13,10 +13,9 @@
 #include "../includes/libft.h"
 
 
-
 // INVALID overrides everything
-	// rev overrides everything in the sense that it cooperates with the given condition
-int			stack_sorting(t_stack *s1, t_stack *s2, char *flags)
+// rev overrides everything in the sense that it cooperates with the given condition
+int stack_sorting(t_stack *s1, t_stack *s2, char *flags)
 {
 	time_t s1_time;
 	time_t s2_time;
@@ -27,8 +26,8 @@ int			stack_sorting(t_stack *s1, t_stack *s2, char *flags)
 		return (-1);
 	if (s1->type != INVALID && s2->type == INVALID)
 		return (1);
-	if (flags[f_time] && s1->type != INVALID && s2->type != INVALID
-	&& s1_time != s2_time)
+	if (flags[f_time] && s1->type != INVALID && s2->type != INVALID &&
+		s1_time != s2_time)
 	{
 		if (flags[f_rev])
 			return (s1_time - s2_time);
@@ -40,8 +39,9 @@ int			stack_sorting(t_stack *s1, t_stack *s2, char *flags)
 
 }
 
-// I need to do the sorting here 
-void		ft_list_push_back(t_stack **begin_list, struct dirent *ent, char *path, char *flags)
+// I need to do the sorting here
+void ft_list_push_back(t_stack **begin_list, struct dirent *ent, char *path,
+	char *flags)
 {
 	t_stack *cur;
 	t_stack *prev;
@@ -53,14 +53,14 @@ void		ft_list_push_back(t_stack **begin_list, struct dirent *ent, char *path, ch
 	if (!*begin_list)
 	{
 		*begin_list = ft_lstnew(ent, path, flags);
-		return ;
+		return;
 	}
 	cur = *begin_list;
 	if (stack_sorting(cur, new, flags) > 0)
 	{
 		new->next = cur;
 		*begin_list = new;
-		return ;
+		return;
 	}
 	while (cur && stack_sorting(cur, new, flags) <= 0)
 	{

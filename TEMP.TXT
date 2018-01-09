@@ -1,0 +1,87 @@
+class ExprNode:
+    char c
+    ExprNode operand1
+    ExprNode operand2
+
+    ExprNode(char num):
+        c = num
+        operand1 = operand2 = nil
+
+    Expr(char op, ExprNode e1, ExprNode e2):
+        c = op
+        operand1 = e1
+        operand2 = e2
+
+# Parser
+ExprNode parse(string input):
+    char c
+    while (c = input.getNextChar()):
+        if (c == '('):
+            operatorStack.push(c)
+
+        else if (c.isDigit()):
+            exprStack.push(ExprNode(c))
+
+        else if (c.isOperator()):
+            while(operatorStack.top().precedence >= c.precedence):
+                operator = operatorStack.pop()
+                # Careful! The second operand was pushed last.
+                e2 = exprStack.pop()
+                e1 = exprStack.pop()
+                exprStack.push(ExprNode(operator, e1, e2))
+
+            operatorStack.push(c)
+
+        else if (c == ')'):
+            while (operatorStack.top() != '('):
+                operator = operatorStack.pop()
+                # Careful! The second operand was pushed last.
+                e2 = exprStack.pop()
+                e1 = exprStack.pop()
+                exprStack.push(ExprNode(operator, e1, e2))
+
+            # Pop the '(' off the operator stack.
+            operatorStack.pop()
+
+        else:
+            error()
+            return nil
+
+    # There should only be one item on exprStack.
+    # It's the root node, so we return it.
+    return exprStack.pop()
+
+
+In file included from openssl_missing.c:22:
+./openssl_missing.h:71:6: error: conflicting types for 'HMAC_CTX_copy'
+void HMAC_CTX_copy(HMAC_CTX *out, HMAC_CTX *in);
+     ^
+/usr/local/include/openssl/hmac.h:101:5: note: previous declaration is here
+int HMAC_CTX_copy(HMAC_CTX *dctx, HMAC_CTX *sctx);
+    ^
+In file included from openssl_missing.c:22:
+./openssl_missing.h:95:5: error: conflicting types for 'EVP_CIPHER_CTX_copy'
+int EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out, EVP_CIPHER_CTX *in);
+    ^
+/usr/local/include/openssl/evp.h:542:5: note: previous declaration is here
+int EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out, const EVP_CIPHER_CTX *in);
+    ^
+openssl_missing.c:26:1: error: conflicting types for 'HMAC_CTX_copy'
+HMAC_CTX_copy(HMAC_CTX *out, HMAC_CTX *in)
+^
+/usr/local/include/openssl/hmac.h:101:5: note: previous declaration is here
+int HMAC_CTX_copy(HMAC_CTX *dctx, HMAC_CTX *sctx);
+    ^
+openssl_missing.c:121:1: error: conflicting types for 'EVP_CIPHER_CTX_copy'
+EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out, EVP_CIPHER_CTX *in)
+^
+/usr/local/include/openssl/evp.h:542:5: note: previous declaration is here
+int EVP_CIPHER_CTX_copy(EVP_CIPHER_CTX *out, const EVP_CIPHER_CTX *in);
+    ^
+
+NORMINETTE
+
+./setup.sh --skip-llvm --no-clean --no-fetch
+
+https://spiegelmock.com/2016/07/05/mac-os-x-el-capitan-and-openssl-headers/
+

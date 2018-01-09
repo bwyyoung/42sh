@@ -14,8 +14,9 @@ T_BOOL check_directory(char *dir_path, char *file)
 
 	dir = NULL;
 	ent = NULL;
+	//printf("check_directory %s\n", dir_path);
 	if (!(dir = opendir(dir_path)))
-		fatal("Could not open directory in (check_directory)");
+		return (FALSE);
 	if (!dir_path || !file)
 		fatal("Error in (check_directory)"); // remove later
 	while ((ent = readdir(dir)))

@@ -1,9 +1,9 @@
-
+#include "../../includes/ft_sh.h"
 
 /*
 
 This function shall return an array of function pointers
-which will return the function that is to execute the
+which will return the function that is to execute the 
 action asked for, such as cursor movement
 
 static void		*get_f_array(void)

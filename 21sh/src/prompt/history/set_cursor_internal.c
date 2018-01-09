@@ -3,8 +3,6 @@
 /*
 ** resets the cursor to the beginning
 ** of the current line it's on internally
-** only works in the absence of the termcap
-** 'bw'
 */
 
 void reset_cursor_internal(t_line *line)

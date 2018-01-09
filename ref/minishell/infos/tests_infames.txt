@@ -1,0 +1,6 @@
+env -i PWD=/ ./ft_minishell1 puis tu fais un cd - ou cd pour aller sur le home
+
+ou sinon cat /dev/urandom | ./ft_minishell1
+
+le dernier c un test d'enculer, ne le prend pas trop en compte… si tu passe GG sinon c surement ton get_next_line qui a des soucis!
+

@@ -13,22 +13,23 @@
 #ifndef FT_SH_H
 # define FT_SH_H
 
-#include "../includes/libft.h"
-#include "../includes/ft_ls.h"
-#include "../includes/redirections.h"
-#include <termcap.h>
-#include <termios.h>
-#include <term.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <sys/param.h>
-#include <signal.h>
-#include <stdarg.h>
-#include <fcntl.h>
-#include <stdio.h>
+# include "../includes/libft.h"
+# include "../includes/ft_ls.h"
+# include "../includes/lexer.h"
+# include "../includes/redirections.h"
+# include <termcap.h>
+# include <termios.h>
+# include <term.h>
+# include <sys/ioctl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdlib.h>
+# include <sys/wait.h>
+# include <sys/param.h>
+# include <signal.h>
+# include <stdarg.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 # define K_RETURN        "\xa\x0\x0\x0\x0\x0"
 # define K_BACKSPACE    "\x7f\x0\x0\x0\x0\x0"
@@ -128,27 +129,30 @@ typedef struct s_cmds
 ** This list indicates the env variables of the shell
 */
 
-typedef struct s_env
+typedef struct			s_env
 {
 	struct s_env *next;
 	struct s_env *prev;
 	char *name;
 	char *value;
-} t_env;
+}						t_env;
 
-typedef struct s_shell
+typedef struct s_tkn	t_tkn;
+
+typedef struct			s_shell
 {
-	struct s_hist *history;
-	int argc; // Amount of arguments passed into my shell (for each individual command)
-	struct s_cmds *cmds; // a list of commands
-	struct s_env *env; // The environment variables
-	char *path_var; // The value of PATH
-	char *bin_dir; // the binary folder in which the sought after CURRENT command is
-	struct winsize *sz;
-	struct termios *termold;
-	struct termios *term;
-
-} t_shell;
+	struct s_hist		*history;
+	int					argc; // Amount of arguments passed into my shell (for each individual command)
+	struct s_cmds		*cmds; // a list of commands
+	struct s_env		*env; // The environment variables
+	char				*path_var; // The value of PATH
+	char				*bin_dir; // the binary folder in which the sought after CURRENT command is
+	struct winsize		*sz;
+	struct termios		*termold;
+	struct termios		*term;
+	t_tkn				*tkns;
+	t_tkn				*tree;
+}						t_shell;
 
 void launch_error_check(char **envv);
 

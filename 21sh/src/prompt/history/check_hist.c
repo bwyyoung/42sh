@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_hist.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/08 14:49:06 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/12/25 07:29:01 by byoung-w         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../includes/ft_sh.h"
 
 /*
@@ -27,11 +39,15 @@ void check_hist(t_line *line)
 	set_cursor_internal(line);
 }
 
-// have an index for every hist list element
-// keep track of the current history element index
-// if there is none (no index) in the up function, then make the last one the current index
-// everytime you enter a history function, either add or subtract index.
-// once the appropiate index has been determined in the function, iterate to that list element
-// and then replace the buffer with that list element.
-
-// the indexes of the list will start at 1, since 0 will be a placeholder for indicating that there is no current list element selected.
+/*
+** have an index for every hist list element
+** keep track of the current history element index
+** if there is none (no index) in the up function, then make the
+** last one the current index
+** everytime you enter a history function, either add or subtract index.
+** once the appropiate index has been determined in the function,
+** iterate to that list element
+** and then replace the buffer with that list element.
+** the indexes of the list will start at 1, since 0 will be a placeholder
+** for indicating that there is no current list element selected.
+*/

@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_unsetenv.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/08 14:49:06 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/12/25 07:29:01 by byoung-w         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/ft_sh.h"
 
 /*
 ** gets rid of an env var element and
 ** frees all the memory associated with it
 */
+
 void del_env_var(t_env **elem)
 {
 	ft_strclr((*elem)->name);

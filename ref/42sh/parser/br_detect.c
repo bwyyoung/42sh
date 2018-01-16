@@ -32,7 +32,7 @@ static void	exec_builtin(char **cmd, int builtin, t_info *info)
 void		ft_execdetect(t_node *node, t_info *info)
 {
 	if (node->type != 0)
-		(*info->tab_browser[node->type])(node, info);
+		(*info->tab_browser[node->type])(node, info); // array of functions
 	else
 	{
 		ft_update_fd(node);

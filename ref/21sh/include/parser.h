@@ -25,7 +25,7 @@
 # define T_LEFT 91
 # define T_RIGHT 92
 # define ROOT 0
-# define COMMA 1
+# define COMMA 1 // SEMICOLON
 # define PIPE 2
 # define REDIR_R 3
 # define APPEND 4

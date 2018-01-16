@@ -3,6 +3,7 @@
 
 #include <termcap.h>
 #include <termios.h>
+#include <term.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <stdlib.h>

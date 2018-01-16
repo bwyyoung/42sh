@@ -65,7 +65,12 @@ SRC = ft_atoi.c \
 	fatal.c \
 	make_file_path.c \
 	ft_str2del.c	\
-	ft_word_count.c
+	ft_word_count.c	\
+	ft_str2dup.c	\
+	ft_str2join.c	\
+	ft_str2len.c	\
+	ft_str2new.c	\
+	ft_str3join.c
 
 OBJ = $(addsuffix .o, $(basename $(SRC)))
 

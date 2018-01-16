@@ -250,9 +250,12 @@ t_stack *ft_lstnew(struct dirent *ent, char *path, char *flags);
 void
 ft_list_push_back(t_stack **alst, struct dirent *ent, char *path, char *flags);
 
-void	fatal(char *err_msg);
+void				fatal(char *err_msg);
 
-void	ft_str2del(char ***tab);
-
-int		ft_word_count(char const *s, char c);
+void				ft_str2del(char ***tab);
+size_t				ft_str2len(char **tab);
+char				**ft_str2new(size_t size);
+char				**ft_str2dup(char **str);
+char				**ft_str2join(char **s1, char **s2);
+int					ft_word_count(char const *s, char c);
 #endif

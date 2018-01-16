@@ -40,14 +40,11 @@ void ft_putenv(t_env **begin_list, char *name, char *value)
 		*begin_list = ft_new_env(name, value);
 		return;
 	}
-	else
-	{
-		tmp = *begin_list;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = ft_new_env(name, value);
-		tmp->next->prev = tmp;
-	}
+	tmp = *begin_list;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = ft_new_env(name, value);
+	tmp->next->prev = tmp;
 }
 
 t_env *get_first_env_elem(char **envv)
@@ -65,13 +62,11 @@ t_env *get_first_env_elem(char **envv)
 }
 
 /*
-** Takes in the environmnet vars
+** Takes in the environment vars
 ** and allocates a list with all the env vars in it
 */
-
 t_env *init_env(char **envv)
 {
-
 	t_env *env_list;
 	char **env_var;
 	int i;

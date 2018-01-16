@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prompt_loop.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/08 14:49:06 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/12/25 07:29:01 by byoung-w         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/ft_sh.h"
-
 
 void modify_buffer(t_line *line, char *buf)
 {
@@ -13,11 +23,12 @@ void modify_buffer(t_line *line, char *buf)
 /*
 ** Display the initial contents of the text buffer on the screen.
 ** Get a keystroke from the user.
-** If the keystroke is a command (like delete or backspace), dispatch or carry out that command.
-** If the keystroke is a character, insert it into the text buffer (or replace the current character if not in insert mode).
+** If the keystroke is a command (like delete or backspace), dispatch or carry
+** out that command.
+** If the keystroke is a character, insert it into the text buffer
+** (or replace the current character if not in insert mode).
 ** Display the updated contents of the text buffer on screen.
 */
-
 char *prompt_loop(t_hist *history)
 {
 	char buf[KEY_BUF_SIZE + 1];

@@ -21,7 +21,6 @@ void apply_mode(t_shell *shell)
 {
 	if (tcsetattr(0, TCSAFLUSH, shell->term) == -1)
 		fatal("Error in (apply_mode)");
-
 }
 
 /*

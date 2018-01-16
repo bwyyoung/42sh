@@ -56,7 +56,6 @@ char *replace_tabs(char *buf)
 ** Reads a command from the standard input
 ** Parses it, meaning we seperate the command into a program and a set of arguments
 */
-
 void sh_loop(t_shell *shell, char **envv) // WIP
 {
 	int status;

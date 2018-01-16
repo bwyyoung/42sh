@@ -13,6 +13,9 @@
 #ifndef FT_SH_H
 # define FT_SH_H
 
+#include "../includes/libft.h"
+#include "../includes/ft_ls.h"
+#include "../includes/redirections.h"
 #include <termcap.h>
 #include <termios.h>
 #include <term.h>
@@ -26,10 +29,6 @@
 #include <stdarg.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include "../includes/libft.h"
-#include "../includes/ft_ls.h"
-#include "../includes/redirections.h"
-
 
 # define K_RETURN        "\xa\x0\x0\x0\x0\x0"
 # define K_BACKSPACE    "\x7f\x0\x0\x0\x0\x0"
@@ -45,20 +44,19 @@
 # define TRUE 1
 # define FALSE 0
 
-
 /*
 ** history of the commands
 ** given in the past for the arrow up keys
 */
 
-typedef struct s_hist
+typedef struct	s_hist
 {
 	struct s_hist *next;
 	struct s_hist *prev;
 	int index;
 	char *cmd;
 	T_BOOL current;
-} t_hist;
+}				t_hist;
 
 
 /*
@@ -66,13 +64,13 @@ typedef struct s_hist
 ** every element represents a potential cursor position
 */
 
-typedef struct s_cursor
+typedef struct	s_cursor
 {
 	struct s_cursor *next;
 	struct s_cursor *prev;
 	int c_ind;
 	T_BOOL cursor;
-} t_cursor;
+}				t_cursor;
 
 /*
 ** this list will serve as a buffer for

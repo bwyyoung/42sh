@@ -12,24 +12,33 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
 # include <dirent.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <time.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <time.h>
+# define SAFE_DELETE(a) if((a) != NULL) free(a); (a) = NULL;
+# ifndef TBOOL
+#  define TBOOL
 
-#define t_bool int
-#define TRUE 1
-#define FALSE 0
+typedef enum
+{
+	false,
+	true
+}	t_bool;
+# endif
+
+# ifndef BOOL_INT
+#  define BOOL_INT
+#  define TRUE 1
+#  define FALSE 0
+# endif
 
 # define VALID_FLAGS    "Ralrt1"
 # define NB_FLAGS        6
-
-
 # define STOP "\033[0;0m"
 # define EOC "\033[39m"
 # define EOBG "\033[49m"
@@ -55,15 +64,16 @@
 # define BGGRAY "\033[47m"
 
 
-typedef enum e_flgs
+typedef enum	e_flgs
 {
 	f_recur = 0, f_hidden = 1, f_list = 2, f_rev = 3, f_time = 4, f_main = 5
-} t_flags;
+}				t_flgs;
 
-typedef enum e_filetype
+typedef enum	e_filetype
 {
-	BLOCK, CHAR_SP, DIRECTORY, SYMLINK, SOCK_LINK, FIFO, REG, INVALID
-} t_filetype;
+				BLOCK, CHAR_SP, DIRECTORY, SYMLINK, SOCK_LINK, FIFO, REG,
+				INVALID
+}				t_filetype;
 
 // These are mostly for the output of the long listing format
 // When I actually need to compare stats like time for example, re-call stat
@@ -113,7 +123,7 @@ size_t ft_strlcat(char *dst, char const *src, size_t size);
 
 void ft_exit(char *s);
 
-void ft_init_tab(char **tab);
+void ft_init_tab(char **tabs);
 
 void ft_memdel(void **ap);
 
@@ -161,7 +171,7 @@ void *ft_memmove(void *dst, const void *src, size_t len);
 
 void *ft_memset(void *b, int c, size_t len);
 
-void ft_clear_tab(char ***tab);
+void ft_clear_tab(char ***tabs);
 
 void ft_colstr(char *col, char *msg);
 

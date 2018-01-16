@@ -1,7 +1,22 @@
-CC = gcc
-FLAGS = -g -Wall -Wextra -Werror -I includes
-LIBFT = libft/libft.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2014/09/09 10:19:19 by byoung-w          #+#    #+#              #
+#    Updated: 2015/04/29 20:13:26 by byoung-w         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = 21sh
+
+CC		=	gcc -Wall -Werror -Wdeprecated-declarations -Wextra
+CCO		=	gcc -o
+LIB		=	-L ft_printf/ -lftprintf -L libft/ -lft -ltermcap
+FLAGS	=	-Wall -Werror -Wextra
+
 SRC = src/main.c \
 	src/get_next_line.c \
 	src/sh_execute.c \
@@ -52,29 +67,28 @@ SRC = src/main.c \
 	src/redirections/add_cmd_fd.c \
 	src/test_helpers/print_list_test.c \
 
-OBJ = $(addsuffix .o, $(basename $(SRC)))
+OBJ		=	$(SRC:.c=.o) #interesting compilation method
 
-all: $(LIBFT) $(NAME)
+all		: $(NAME)
 
-$(LIBFT):
-	make -C libft
+$(NAME)	: $(OBJ)
+	@make -C libft/
+	@make -C ft_printf/
+	@$(CC) $(FLAGS) $(INC) $(OBJ) -o $(NAME) $(LIB)
 
-$(NAME):$(LIBFT) $(NAME) $(OBJ)
-	@echo "building binary file"
-	$(CC) $(FLAGS) $(SRC) -o $(NAME) -I -lft $(LIBFT) -ltermcap
+%.o: %.c
+	@$(CC) -o $@ -c $< $(FLAGS)
 
-%.o: %.c ft_ls.h
-		clang $(FLAG) -c $< -o $@
+clean	:
+	@make -C libft/ clean
+	@make -C ft_printf/ clean
+	@$(RM) $(OBJ)
 
-clean:
-	rm -f $(OBJ)
-	@make clean -C libft/
+fclean	: clean
+	@make -C libft/ fclean
+	@make -C ft_printf/ fclean
+	@$(RM) $(NAME)
 
-fclean: clean
-	@echo "delete $(NAME)"
-	@rm -f $(NAME)
-	@make fclean -C libft/
+re		: fclean all
 
-re: fclean all
-
-.PHONY: re clean fclean all
+.PHONY : re fclean clean all

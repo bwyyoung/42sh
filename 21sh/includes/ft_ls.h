@@ -87,13 +87,13 @@ int parse_flags(int ac, char **av, char *flags);
 
 t_stack *alloc_list(char *name, char *flags);
 
-t_flags *get_flags(int argc, char **argv);
+t_flgs *get_flags(int argc, char **argv);
 
 char *make_path_dir(char *name, char *cathis);
 
-int ft_init_flags(t_flags **flags);
+int ft_init_flags(t_flgs **flags);
 
-void det_flags(char *flag, t_flags **flags);
+void det_flags(char *flag, t_flgs **flags);
 
 void big_r(DIR *rep);
 

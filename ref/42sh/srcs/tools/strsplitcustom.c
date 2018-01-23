@@ -1,0 +1,117 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strsplitcustom.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/19 16:17:18 by ulefebvr          #+#    #+#             */
+/*   Updated: 2016/12/12 20:14:46 by ulefebvr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdlib.h>
+#include "libft.h"
+#include "tools.h"
+
+static char			*remove_quote(char *str)
+{
+	char			c;
+	char			*tmp;
+	char			*tmp2;
+
+	c = 0;
+	tmp = str;
+	tmp2 = str;
+	while (tmp && *tmp)
+	{
+		if (*tmp == '\\' && c != '\'')
+		{
+			*tmp2++ = *tmp++;
+			*tmp2++ = *tmp++;
+		}
+		else if ((*tmp == '\'' || *tmp == '\"') && (!c || c == *tmp))
+		{
+			c = (!c) ? *tmp : 0;
+			tmp++;
+		}
+		else
+			*tmp2++ = *tmp++;
+	}
+	*tmp2 = *tmp;
+	return (str);
+}
+
+static char			*seek_next_delimiter(char *str)
+{
+	char			quote;
+	int				chr;
+
+	quote = 0;
+	chr = 0;
+	while (str && *str && *str == ' ')
+		++str;
+	--str;
+	while (++str && *str && !(!chr && !quote && *str == ' ') && !(chr = 0))
+	{
+		if (*str == '\\' && quote == '\'')
+			;
+		else if (!chr && *str == '\\' && (chr = 1) && ++str)
+			continue;
+		else if (!chr && (*str == '\'' || *str == '\"') && *str == quote)
+			quote = 0;
+		else if (!chr && (*str == '\'' || *str == '\"'))
+			quote = (quote) ? quote : *str;
+		else if (chr && !quote && *str && *(str + 1) == ' ')
+			str++;
+	}
+	return (str);
+}
+
+static char			*get_next_word(char *str)
+{
+	static char		*content;
+	char			*del;
+	char			*ret;
+	char			*tmp;
+	char			*tmp2;
+
+	ret = NULL;
+	content = (str) ? str : content;
+	if (!str && content)
+	{
+		del = seek_next_delimiter(content);
+		tmp = ft_memalloc(sizeof(char) * (del - content + 1));
+		tmp = ft_memcpy(tmp, content, (del - content));
+		tmp2 = ft_strtrim(tmp);
+		ret = clean_backslash(remove_quote(ft_strtrim(tmp)), tmp2[0]);
+		ft_free_them_all(2, &tmp, &tmp2);
+		del = (!*del) ? NULL : del;
+		if (ret && !*ret)
+			ft_memdel((void **)&ret);
+		content = del;
+	}
+	return (ret);
+}
+
+char				**cust_split(char *str)
+{
+	int				nword;
+	char			*tmp;
+	char			**tab;
+	char			*tmptab[ft_strlen(str) / 2 + 1];
+
+	nword = 0;
+	tab = NULL;
+	get_next_word(str);
+	while ((tmp = get_next_word(NULL)))
+		tmptab[nword++] = tmp;
+	if (nword)
+	{
+		tab = (char **)ft_memalloc(sizeof(char *) * (nword + 1));
+		tab[nword] = 0;
+		while (nword--)
+			tab[nword] = tmptab[nword];
+	}
+	return (tab);
+}

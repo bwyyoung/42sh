@@ -1,0 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_history_optps.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ulefebvr <ulefebvr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/14 12:41:32 by ulefebvr          #+#    #+#             */
+/*   Updated: 2016/12/26 14:47:08 by rclanget         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "history.h"
+#include "builtin_history.h"
+#include "libft.h"
+#include "tools.h"
+#include "shell.h"
+
+char				*history_perform(t_info *info, char *str)
+{
+	t_history		*hist;
+	int				offset;
+
+	if (!(hist = get_head(info->hist)))
+		return (NULL);
+	offset = ft_atoi(str + 1);
+	while (hist)
+	{
+		if (hist->n == offset)
+			return (ft_strdup(hist->cmd));
+		hist = hist->next;
+	}
+	return (NULL);
+}
+
+char				*history_add_args(char **cmd)
+{
+	char			*tmp;
+	char			*tmp1;
+	char			*tmp2;
+
+	tmp = NULL;
+	while (cmd && *cmd)
+	{
+		tmp1 = ft_strjoin(tmp, " ");
+		tmp2 = ft_strjoin_custom(tmp1, *cmd);
+		ft_free_them_all(1, &tmp, &tmp1);
+		tmp = tmp2;
+		cmd++;
+	}
+	return (tmp);
+}
+
+int					history_substitute(t_info *info, char **av, int option)
+{
+	char			*tmp;
+
+	if (av && *av)
+	{
+		if (option & OPT_P)
+		{
+			tmp = history_perform(info, *av);
+			ft_print("%s\n", tmp ? tmp : *av);
+			ft_free_them_all(1, &tmp);
+		}
+		else
+		{
+			tmp = history_add_args(av);
+			free(info->hist->cmd);
+			info->hist->cmd = tmp;
+		}
+	}
+	return (0);
+}

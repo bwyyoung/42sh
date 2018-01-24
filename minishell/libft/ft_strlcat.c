@@ -3,39 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/05 20:08:07 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/10 15:23:30 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/03 17:57:22 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+static size_t		do_strlcat_l(int delta, int nb, char *destcopy,
+const char *src)
 {
-	size_t	i;
-	size_t	len;
-	size_t	j;
-	size_t	y;
+	const char	*srccopy;
 
-	i = 0;
-	while (dst[i] != '\0')
-		i++;
-	len = i + ft_strlen(src);
-	j = size - i - 1;
-	if (i < size)
+	srccopy = src;
+	while (*srccopy != '\0')
 	{
-		y = 0;
-		while (src[y] && y < j)
+		if (nb != 1)
 		{
-			dst[i] = src[y];
-			i++;
-			y++;
+			*destcopy = *srccopy;
+			destcopy++;
+			nb--;
 		}
-		dst[i] = '\0';
+		srccopy++;
 	}
-	if (size < i)
-		return (len - i + size);
-	return (len);
+	*destcopy = '\0';
+	return ((srccopy - src) + delta);
+}
+
+size_t				ft_strlcat(char *dest, const char *src, size_t size)
+{
+	char	*destcopy;
+	int		nb;
+	int		delta;
+
+	destcopy = dest;
+	nb = size;
+	while (*destcopy != '\0' && nb-- != 0)
+		destcopy++;
+	delta = (destcopy - dest);
+	nb = size - delta;
+	if (nb == 0)
+		return (delta + ft_strlen(src));
+	return (do_strlcat_l(delta, nb, destcopy, src));
 }

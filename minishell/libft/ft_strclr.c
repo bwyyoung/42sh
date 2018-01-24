@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/06 11:16:00 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/06 15:27:02 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:10:59 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	ft_strclr(char *s)
 {
-	ft_memset(s, '\0', ft_strlen(s));
+	if (!s)
+		return ;
+	ft_bzero(s, ft_strlen(s));
 }

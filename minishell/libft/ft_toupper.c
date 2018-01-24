@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 18:14:09 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/04 18:07:39 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 09:50:50 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/03 14:30:12 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int		ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	else
-		return (c);
+	{
+		return (c - 'a' + 'A');
+	}
+	return (c);
 }

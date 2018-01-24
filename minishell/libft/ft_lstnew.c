@@ -3,35 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/10 12:58:23 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/10 15:22:33 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 09:50:50 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/11/06 22:47:08 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+t_list		*ft_lstnew(void const *content, size_t content_size)
 {
-	t_list	*elem;
+	t_list		*mlist;
 
-	elem = (t_list*)malloc(sizeof(t_list));
-	if (!elem)
+	mlist = (t_list *)malloc(sizeof(t_list));
+	if (mlist == NULL)
 		return (NULL);
-	if (!content)
+	mlist->next = NULL;
+	mlist->content = NULL;
+	mlist->content_size = 0;
+	if (content != NULL)
 	{
-		elem->content = NULL;
-		elem->content_size = 0;
-		elem->next = NULL;
+		mlist->content = malloc(sizeof(content));
+		if (mlist->content == NULL)
+			return (NULL);
+		ft_memcpy(mlist->content, content, sizeof(content));
+		mlist->content_size = content_size;
 	}
-	else
-	{
-		elem->content = malloc(content_size);
-		elem->content_size = content_size;
-		if (elem->content)
-			ft_memcpy(elem->content, content, content_size);
-		elem->next = NULL;
-	}
-	return (elem);
+	return (mlist);
 }

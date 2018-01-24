@@ -3,33 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 18:09:09 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/08 16:08:46 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 09:50:50 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/03 14:30:12 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-char	*ft_strstr(const char *s1, const char *s2)
+char	*ft_strstr(const char *str, const char *to_find)
 {
-	int		i;
-	int		y;
+	char		c;
+	int			len;
+	char		sc;
+	int			originlen;
+	const char	*strptr;
 
-	i = 0;
-	y = 0;
-	if (s2[0] == '\0' || s2 == NULL)
-		return ((char *)s1);
-	while (s1[i])
+	if (str == NULL || to_find == NULL)
+		return (NULL);
+	c = (*to_find);
+	len = ft_strlen(to_find);
+	sc = (*str);
+	originlen = ft_strlen(str);
+	if (!c)
+		return ((char *)str);
+	else if (!sc)
+		return ((char *)0);
+	strptr = str;
+	while (ft_strncmp(strptr, to_find, len) != 0 && *strptr != '\0')
 	{
-		if (s1[i] == s2[y])
-			y++;
-		else
-			y = 0;
-		if (!s2[y])
-			return ((char *)s1 + (i - (y - 1)));
-		i++;
+		strptr++;
+		originlen--;
 	}
+	if (originlen > 0)
+		return ((char *)strptr);
 	return (NULL);
 }

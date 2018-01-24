@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/06 19:09:02 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/11 20:46:56 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:10:59 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*str_new;
-	size_t	i;
+	char				*strnew;
+	unsigned int		i;
+	unsigned int		j;
 
-	if (!s)
+	strnew = NULL;
+	if (s == NULL)
 		return (NULL);
-	i = 0;
-	str_new = ft_strnew(len + 1);
-	if (!str_new)
+	if (!(strnew = ft_strnew(len)))
 		return (NULL);
-	while (i < len && s[i])
+	i = start;
+	j = 0;
+	while (i < start + len && s[i] != '\0')
 	{
-		str_new[i] = s[start];
+		strnew[j] = s[i];
 		i++;
-		start++;
+		j++;
 	}
-	return (str_new);
+	return (strnew);
 }

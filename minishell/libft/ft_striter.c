@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/06 11:30:46 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/11 20:35:04 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:10:59 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	if (!s || !f)
-		return ;
-	while (*s)
+	char	*sp;
+
+	if (s != NULL && (*f) != NULL)
 	{
-		f(&*s);
-		s++;
+		sp = s;
+		while (*sp != '\0')
+		{
+			(*f)(sp);
+			sp++;
+		}
 	}
 }

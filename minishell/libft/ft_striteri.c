@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/06 15:23:14 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/11 20:35:45 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:10:59 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	unsigned int	i;
+	int	i;
 
-	if (!s || !f)
-		return ;
 	i = 0;
-	while (s[i])
+	if (s != NULL && f != NULL)
 	{
-		f(i, &s[i]);
-		i++;
+		while (*s != '\0')
+		{
+			(*f)(i, s);
+			i++;
+			s++;
+		}
 	}
 }

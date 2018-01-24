@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 19:05:37 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/07 20:49:02 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 09:50:50 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/03 11:22:41 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,6 @@
 
 void	ft_putstr(char const *str)
 {
-	unsigned int		i;
-
-	i = 0;
-	if (str == NULL)
-		write(1, "(null)", 6);
-	else
-	{
-		while (str[i])
-		{
-			ft_putchar(str[i]);
-			i++;
-		}
-	}
+	while (str != NULL && *str != '\0')
+		write(1, str++, 1);
 }

@@ -3,40 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/11 20:50:14 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/17 19:08:27 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:10:59 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char				*ft_strtrim(char const *s)
+static int			strisblank(char c)
 {
-	char	*res;
-	int		i;
-	int		j;
-	int		k;
+	if (c != ' ' && c != '\n' && c != '\t')
+		return (0);
+	return (1);
+}
 
-	i = 0;
-	j = 0;
+static char			*fillstrnew(int i, int j, char const *s, char *strnew)
+{
+	int	k;
+
 	k = 0;
-	if (!s)
-		return (NULL);
-	if (!(res = ft_strnew(ft_strlen(s) + 1)))
-		return (NULL);
-	while (s[i])
+	while (i <= j)
 	{
-		if (!(s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
-			k++;
-		if (k)
-			res[j++] = s[i];
+		strnew[k] = s[i];
+		k++;
 		i++;
 	}
-	while (j > 0 && (res[j - 1] == ' ' ||
-		res[j - 1] == '\n' || res[j - 1] == '\t'))
-		j--;
-	res[j] = '\0';
-	return (res);
+	strnew[k] = '\0';
+	return (strnew);
+}
+
+char				*ft_strtrim(char const *s)
+{
+	int		i;
+	int		j;
+	char	*strnew;
+
+	strnew = NULL;
+	if (s)
+	{
+		j = ft_strlen(s) - 1;
+		i = 0;
+		while (strisblank(s[i]))
+			i++;
+		strnew = (char *)malloc(sizeof(char) * (j - i + 1));
+		while (strisblank(s[j]))
+			j--;
+		if (i == 0 && j == (int)ft_strlen(s) - 1)
+			return (ft_strdup(s));
+		return (fillstrnew(i, j, s, strnew));
+	}
+	return (NULL);
 }

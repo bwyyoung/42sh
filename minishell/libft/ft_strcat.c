@@ -3,28 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 18:06:31 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/04 15:42:14 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:10:59 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *dst, const char *src)
-{
-	int		i;
-	int		dst_size;
+#include "libft.h"
 
-	i = 0;
-	dst_size = 0;
-	while (dst[dst_size])
-		dst_size++;
-	while (src[i])
+char	*ft_strcat(char *dest, const char *src)
+{
+	char *destcopy;
+
+	destcopy = dest;
+	while (*dest)
+		dest++;
+	while ((*dest = *src))
 	{
-		dst[dst_size] = src[i];
-		dst_size++;
-		i++;
+		dest++;
+		src++;
 	}
-	dst[dst_size] = '\0';
-	return (dst);
+	return (destcopy);
 }

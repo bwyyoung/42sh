@@ -3,30 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 18:05:41 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/04 15:03:59 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:05:06 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:12:01 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strdup(const char *src)
+static void		ft_bcopy(const char *src, char *dest, int len)
 {
-	int		i;
-	char	*dst;
+	const char	*lasts;
+	char		*lastd;
 
-	i = 0;
-	dst = (char*)malloc(sizeof(char) * (ft_strlen(src) + 1));
-	if (dst == NULL)
-		return (NULL);
-	while (src[i])
+	if (dest < src)
+		while (len--)
+			*dest++ = *src++;
+	else
 	{
-		dst[i] = src[i];
-		i++;
+		lasts = src + (len - 1);
+		lastd = dest + (len - 1);
+		while (len--)
+			*(char *)lastd-- = *(char *)lasts--;
 	}
-	dst[i] = '\0';
-	return (dst);
+}
+
+char			*ft_strdup(const char *str)
+{
+	int		siz;
+	char	*copy;
+	char	*copy2;
+
+	siz = ft_strlen(str) + 1;
+	copy = malloc(siz);
+	if (copy == NULL)
+		return (NULL);
+	copy2 = copy;
+	ft_bcopy(str, copy, siz);
+	return (copy2);
 }

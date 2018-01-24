@@ -3,30 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 18:06:49 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/04 16:51:20 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/03 17:57:22 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-char	*ft_strncat(char *dst, char *src, size_t n)
+char		*ft_strncat(char *dest, const char *src, size_t nb)
 {
-	size_t		i;
-	size_t		size_dst;
+	char *destcopy;
 
-	i = 0;
-	size_dst = 0;
-	while (dst[size_dst])
-		size_dst++;
-	while (i < n && src[i])
+	destcopy = dest;
+	if (nb != 0)
 	{
-		dst[size_dst] = src[i];
-		size_dst++;
-		i++;
+		while (*destcopy)
+			destcopy++;
+		while (nb != 0)
+		{
+			if ((*destcopy = *src) == 0)
+			{
+				break ;
+			}
+			src++;
+			destcopy++;
+			nb--;
+		}
+		*destcopy = 0;
 	}
-	dst[size_dst] = '\0';
-	return (dst);
+	return (dest);
 }

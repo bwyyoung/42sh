@@ -3,23 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/05 15:07:49 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/05 15:12:04 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/08/28 13:51:34 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:25:28 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_putnbr(int nb)
+void	ft_putnbr(int nb)
 {
-	if (nb < 0)
+	if (nb == -2147483648)
+	{
+		ft_putstr("-2147483648");
+		return ;
+	}
+	else if (nb < 0)
 	{
 		ft_putchar('-');
-		nb = -nb;
+		ft_putnbr(-nb);
 	}
-	if (nb >= 10)
+	else if (nb > 9)
 	{
 		ft_putnbr(nb / 10);
 		ft_putnbr(nb % 10);

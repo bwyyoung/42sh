@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/06 10:47:27 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/11 18:14:01 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:10:59 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 void	*ft_memalloc(size_t size)
 {
-	char	*str;
+	void	*mem;
 
-	if (!size)
-		return (NULL);
-	str = (char *)malloc(sizeof(str) * size);
-	if (!str)
-		return (NULL);
-	ft_memset(str, 0, size);
-	return ((void *)str);
+	mem = NULL;
+	if (size)
+	{
+		mem = malloc(size);
+		if (mem)
+			ft_bzero(mem, size);
+	}
+	return (mem);
 }

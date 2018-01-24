@@ -3,23 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 18:05:55 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/11 16:37:20 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/09 14:25:03 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/09 14:25:08 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strcpy(char *s1, const char *s2)
 {
-	unsigned int	i;
+	char	*s3;
 
-	i = 0;
-	while (s2[i])
+	s3 = s1;
+	while ((*s3 = *s2))
 	{
-		s1[i] = s2[i];
-		i++;
+		if (*s2 == '\0')
+			break ;
+		s2++;
+		s3++;
 	}
-	s1[i] = '\0';
+	*s3 = '\0';
 	return (s1);
 }

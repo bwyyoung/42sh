@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/05 17:33:59 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/05 18:13:20 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 17:57:08 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/14 02:10:59 by sessaidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 
 int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*p_s1;
-	unsigned char	*p_s2;
-	size_t			i;
+	const char	*p1;
+	const char	*p2;
 
-	p_s1 = (unsigned char *)s1;
-	p_s2 = (unsigned char *)s2;
-	i = 0;
-	if ((!s1 && !s2) || (p_s1[0] == '\0' && p_s2[0] == '\0'))
-		return (0);
-	while ((p_s1[i] == p_s2[i]) && (i < n))
-		i++;
-	if (i == n)
-		i = i - 1;
-	return ((int)(p_s1[i] - p_s2[i]));
+	p1 = s1;
+	p2 = s2;
+	if (n > 0)
+		while (n > 0)
+		{
+			if (*p1++ != *p2++)
+				return ((unsigned char)*--p1 - (unsigned char)*--p2);
+			n--;
+		}
+	return (0);
 }

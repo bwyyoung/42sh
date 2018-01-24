@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/07 12:46:03 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/07 13:06:47 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 09:50:50 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/03 11:22:41 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,16 @@
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	size_t		i;
-	size_t		j;
+	unsigned int	len2;
 
-	if (!s1)
-		return (NULL);
-	if (!(*s2))
+	if (*s2 == '\0')
 		return ((char *)s1);
-	i = 0;
-	while (s1[i] && i < n)
+	len2 = ft_strlen(s2);
+	while (*s1 != '\0' && n-- >= len2)
 	{
-		j = 0;
-		while (s1[i + j] == s2[j] && i + j < n)
-		{
-			j++;
-			if (!s2[j])
-				return ((char *)(&s1[i]));
-		}
-		i++;
+		if (*s1 == *s2 && ft_memcmp(s1, s2, len2) == 0)
+			return ((char *)s1);
+		s1++;
 	}
 	return (NULL);
 }

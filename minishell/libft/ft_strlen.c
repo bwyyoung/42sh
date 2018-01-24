@@ -3,24 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 18:05:26 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/07 21:02:44 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 09:50:50 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/09/03 11:22:41 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strlen(const char *str)
+int				ft_strlen(char const *str)
 {
-	int		i;
+	char const	*length;
 
-	i = 0;
-	if (str)
-	{
-		while (str && str[i])
-			i++;
-	}
-	return (i);
+	if (!str)
+		return (0);
+	length = str;
+	while (*length != '\0')
+		length++;
+	return (length - str);
 }

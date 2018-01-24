@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 18:10:40 by mda-cost          #+#    #+#             */
-/*   Updated: 2015/12/10 21:34:09 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/09/03 09:50:50 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/11/06 22:47:08 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 
 int		ft_atoi(const char *str)
 {
-	int value;
-	int positive;
-	int i;
+	int			neg;
+	const char	*s;
+	long		val;
 
-	value = 0;
-	while (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\f'
-		|| *str == '\v' || *str == '\r')
-		str++;
-	positive = (*str == '-' ? -1 : 1);
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str && ft_isdigit(*str))
+	s = str;
+	neg = 1;
+	val = 0;
+	while ((*s == ' ' || *s == '\t' || *s == '\n'
+	|| *s == '\r' || *s == '\v' || *s == '\f' || *s == '\12'))
+		s++;
+	if (*s == '+' || *s == '-')
 	{
-		i = (int)(*str - 48);
-		value = (value * 10) + i;
-		str++;
+		if (*s == '-')
+			neg = -1;
+		s++;
 	}
-	return (value * positive);
-	return (0);
+	while (*s >= '0' && *s <= '9')
+	{
+		val *= 10;
+		val += (long)(*s - '0');
+		s++;
+	}
+	if (((int)(val * neg) == 0 && val != 0) || (val < 0))
+		val = (neg < 0) ? 0 : -1;
+	return ((int)(val * neg));
 }

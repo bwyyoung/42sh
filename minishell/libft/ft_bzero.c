@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mda-cost <mda-cost@student.42.fr>          +#+  +:+       +#+        */
+/*   By: byoung-w <byoung-w@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/05 14:21:08 by mda-cost          #+#    #+#             */
-/*   Updated: 2014/11/05 14:23:30 by mda-cost         ###   ########.fr       */
+/*   Created: 2014/11/04 19:21:36 by byoung-w          #+#    #+#             */
+/*   Updated: 2014/11/04 19:28:08 by byoung-w         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	char			*ptr;
-	unsigned int	i;
+	char	*c;
 
-	i = 0;
-	ptr = (char*)s;
-	while (i < n)
+	if (n > 0)
 	{
-		ptr[i] = 0;
-		i++;
+		c = s;
+		while (n > 0)
+		{
+			*c = 0;
+			c++;
+			n--;
+		}
 	}
 }

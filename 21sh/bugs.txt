@@ -1,9 +1,0 @@
-BUG 1
-
-tamshell $> ls
-21sh            21sh.dSYM       Makefile        TEMP.txt        auteur          bugs.txt        ft_printf       ft_sh.dSYM      includes        libft           mind_dump.txt   src
-tamshell $> lsError (init_buf_ind)
-
-
-BUG 2
-

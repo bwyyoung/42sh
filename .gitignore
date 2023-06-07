@@ -54,3 +54,5 @@ dkms.conf
 Debug
 .vs
 x64
+
+.idea
